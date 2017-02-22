@@ -10,7 +10,7 @@ All images must conform to:
 </figure>
 ```
 
-`<figcaption>` is optional
+`<figcaption>` is optional.
 
 Lazy loading images must conform to:
 
@@ -29,7 +29,7 @@ Lazy loading images must conform to:
 </figure>
 ```
 
-`<figcaption>` is optional
+`<figcaption>` is optional.
 
 For non-lazy-load images, sanitize will ensure:
 
