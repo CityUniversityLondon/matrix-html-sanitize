@@ -44,6 +44,7 @@ For lazy-load images:
 - `<img>` has a data-src attribute with a value in the format `./?a=ASSET_ID`. If not present, it'll try to use
 `src` for this purpose. If neither have the correct format, it'll remove the `lazy-load` classname, and will treat the 
 image as described above.
+- `<img>` has a `style` attribute with the format above. Any other style will be removed.
 - `<img>` has a `src` attribute with a fixed value (TBD). Will set this value.
 - `<figure>` has a `<noscript>` tag with the content indicated above.
 - `<figure>` contains only a `<img>`, a `<noscript>`, and optionally an `<figcaption>`. Will delete any other content.
