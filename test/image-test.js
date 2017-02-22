@@ -9,8 +9,8 @@ describe('img management', () => {
 
     describe('non-lazy-load', () => {
         it('should add default alt description', () => {
-            expect(sanitize('<img src="./?a=1000">')).to.equal('<figure><img src="./?a=1000" alt="%globals_asset_attribute_alt:1000%"></figure>');
-            expect(sanitize('<p><img src="./?a=1000"></p>')).to.equal('<p><figure><img src="./?a=1000" alt="%globals_asset_attribute_alt:1000%"></figure></p>');
+            expect(sanitize('<img src="./?a=1000">')).to.equal('<figure><img alt="%globals_asset_attribute_alt:1000%" src="./?a=1000"></figure>');
+            expect(sanitize('<p><img src="./?a=1000"></p>')).to.equal('<p><figure><img alt="%globals_asset_attribute_alt:1000%" src="./?a=1000"></figure></p>');
         });
     });
 
@@ -19,14 +19,16 @@ describe('img management', () => {
             expect(sanitize('<p><img src="./?a=1000" class="lazy-load"></p>')).to.equal('' +
                 '<p>' +
                 '<figure>' +
-                '<img src="/__data/assets/git_bridge/0015/344112/main/img/blank.png" ' +
-                'class="lazy-load" ' +
+                '<img ' +
                 'alt="%globals_asset_attribute_alt:1000%" ' +
+                'class="lazy-load" ' +
                 'data-src="./?a=1000" ' +
+                'src="/__data/assets/git_bridge/0015/344112/main/img/blank.png" ' +
                 'style="padding-bottom:%globals_asset_attribute_height:1000^replace_keywords:divide:{globals_asset_attribute_width:1000}^multiply:100%%">' +
                 '<noscript>' +
-                '<img src="./?a=1000" ' +
-                'alt="%globals_asset_attribute_alt:1000%">' +
+                '<img ' +
+                'alt="%globals_asset_attribute_alt:1000%" ' +
+                'src="./?a=1000">' +
                 '</noscript>' +
                 '</figure>' +
                 '</p>');
@@ -36,14 +38,16 @@ describe('img management', () => {
             let input = '' +
                 '<p>' +
                 '<figure>' +
-                '<img src="./?a=1001" ' +
-                'class="lazy-load" ' +
+                '<img ' +
                 'alt="%globals_asset_attribute_alt:1000%" ' +
+                'class="lazy-load" ' +
                 'data-src="./?a=1000" ' +
+                'src="./?a=1001" ' +
                 'style="padding-bottom:%globals_asset_attribute_height:1000^replace_keywords:divide:{globals_asset_attribute_width:1000}^multiply:100%%">' +
                 '<noscript>' +
-                '<img src="./?a=1000" ' +
-                'alt="%globals_asset_attribute_alt:1000%">' +
+                '<img ' +
+                'alt="%globals_asset_attribute_alt:1000%" ' +
+                'src="./?a=1000">' +
                 '</noscript>' +
                 '</figure>' +
                 '</p>';
@@ -51,14 +55,16 @@ describe('img management', () => {
             expect(sanitize(input)).to.equal('' +
                 '<p>' +
                 '<figure>' +
-                '<img src="/__data/assets/git_bridge/0015/344112/main/img/blank.png" ' +
-                'class="lazy-load" ' +
+                '<img ' +
                 'alt="%globals_asset_attribute_alt:1001%" ' +
-                'style="padding-bottom:%globals_asset_attribute_height:1001^replace_keywords:divide:{globals_asset_attribute_width:1001}^multiply:100%%" ' +
-                'data-src="./?a=1001">' +
+                'class="lazy-load" ' +
+                'data-src="./?a=1001" ' +
+                'src="/__data/assets/git_bridge/0015/344112/main/img/blank.png" ' +
+                'style="padding-bottom:%globals_asset_attribute_height:1001^replace_keywords:divide:{globals_asset_attribute_width:1001}^multiply:100%%">' +
                 '<noscript>' +
-                '<img src="./?a=1001" ' +
-                'alt="%globals_asset_attribute_alt:1001%">' +
+                '<img ' +
+                'alt="%globals_asset_attribute_alt:1001%" ' +
+                'src="./?a=1001">' +
                 '</noscript>' +
                 '</figure>' +
                 '</p>');

@@ -1,11 +1,11 @@
+import orderAttribs from "./order-attribs";
+
 const BLANK_IMG = "/__data/assets/git_bridge/0015/344112/main/img/blank.png";
 
 export default function sanitizeFigure(figure) {
     let img = null;
     let caption = null;
     let noscript = null;
-
-    let toDelete = [];
 
     figure.children.forEach((child, i) => {
         if (child.name === 'img' && img === null) {
@@ -14,12 +14,8 @@ export default function sanitizeFigure(figure) {
             caption = child;
         } else if (child.name === 'noscript' && noscript === null) {
             noscript = child;
-        } else {
-            toDelete.push(i);
         }
     });
-
-    toDelete.reverse().forEach(index => figure.children.splice(index, 1));
 
     if (img != null) {
         let isLazyLoad = !!(img.attribs['class'] && img.attribs['class'].match(/(^|\s)lazy-load(\s|$)/));
@@ -60,4 +56,7 @@ export default function sanitizeFigure(figure) {
 
         figure.children = [img, noscript, caption].filter(v => !!v);
     }
+
+    /** ordering attributes to make testing easier */
+    orderAttribs(figure)
 }
