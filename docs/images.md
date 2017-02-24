@@ -30,7 +30,7 @@
 
 `<figcaption>` is optional.
 
-# With Image Credit:
+## With Image Credit:
 
 ```html
 <figure>
